@@ -60,5 +60,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+          GITHUB_CONTEXT: ${{ toJson(github.event.target_commitish) }}
         run: echo Run from "$GITHUB_CONTEXT" 
