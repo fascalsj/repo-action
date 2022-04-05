@@ -37,7 +37,7 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: ${{ github.event_name == 'release'}}
+        if: ${{ github.event_name == 'release' }}
         run: echo Run from Test
         
   build-validation:
@@ -48,7 +48,7 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        if: ${{ github.event_name == 'release'}}
+        if: ${{ github.event_name == 'release' }}
         run: echo Run from Validation
   
   build-default:
