@@ -24,9 +24,8 @@ permissions:
 
 jobs:
   deploy_percobaan:
-    #
     name: Deploy Percobaan
-    # runs-on: [self-hosted]
+    runs-on: [self-hosted]
     steps:
       - name: Percobaan dulu ini mah
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev' }}
