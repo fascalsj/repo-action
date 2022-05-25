@@ -1,8 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+---
+name: Deploy ECS Wishnu Trial
 
-name: CI
-
-# Controls when the workflow will run
 on:
   workflow_dispatch:
     inputs:
@@ -10,12 +8,8 @@ on:
         type: choice
         required: true
         options:
-          - mrtest
-          - mrprod
-          - qhtest
-          - qhvalidation
-          - qhpreprod
-          - qhprod
+          - dev
+          - prod
       tag:
         type: string
         default: latest
@@ -23,42 +17,30 @@ on:
     branches:
       - master
       - dev
-    tags: 
-      - '*'
-  release:
-    types: [ published ]
+
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
-  # This workflow contains a single job called "build"
-  build-test:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  deploy_percobaan:
+    #
+    name: Deploy Percobaan
+    # runs-on: [self-hosted]
     steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        if: github.event_name == 'release'
-        run: echo Run from Test
-        
-  build-validation:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        if: github.event_name == 'release'
-        run: echo Run from Validation
-  
-  build-default:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github.event.release.target_commitish) }}
-        run: echo Run from "$GITHUB_CONTEXT" 
+      - name: Percobaan dulu ini mah
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev' }}
+        run: echo Tag ${{ inputs.tag }}
+#    uses: mjgaletto/mr-terminology-microservice/.github/workflows/build-ecs.yaml@dev
+#    secrets:
+#      ASSUME_ROLE: ${{ secrets.QHPROD_ASSUME_ROLE_ARN }}
+#      DEVOPS_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+#      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+#      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+#      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#      ASSUME_ROLE_PROD: ${{ secrets.MRPROD_ASSUME_ROLE_ARN }}
+#    with:
+#      environment: qhprod
+#      tag: ${{ github.event.inputs.tag }}
+#      level: production
+#      cluster: qhprod-ecs-shared-ECSCluster
