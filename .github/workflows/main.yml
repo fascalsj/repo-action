@@ -1,5 +1,5 @@
 ---
-name: Deploy ECS Wishnu Trial
+name: Percobaan Deploy
 
 on:
   workflow_dispatch:
