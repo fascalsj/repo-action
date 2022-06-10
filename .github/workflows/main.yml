@@ -30,16 +30,3 @@ jobs:
       - name: Percobaan dulu ini mah
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev' }}
         run: echo Tag ${{ inputs.tag }}
-#    uses: mjgaletto/mr-terminology-microservice/.github/workflows/build-ecs.yaml@dev
-#    secrets:
-#      ASSUME_ROLE: ${{ secrets.QHPROD_ASSUME_ROLE_ARN }}
-#      DEVOPS_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
-#      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-#      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-#      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#      ASSUME_ROLE_PROD: ${{ secrets.MRPROD_ASSUME_ROLE_ARN }}
-#    with:
-#      environment: qhprod
-#      tag: ${{ github.event.inputs.tag }}
-#      level: production
-#      cluster: qhprod-ecs-shared-ECSCluster
