@@ -29,10 +29,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: checkout from repo
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v3.3.0
         with:
           java-version: 11
-
       - name: Percobaan dulu ini mah
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev' }}
         run: echo Tag ${{ inputs.tag }}
