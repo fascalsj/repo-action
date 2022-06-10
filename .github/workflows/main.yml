@@ -33,6 +33,4 @@ jobs:
         with:
           java-version: 11
           distribution: temurin
-      - name: Percobaan dulu ini mah
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev' }}
-        run: echo Tag ${{ inputs.tag }}
+      - run: echo Ini Coba dulu ya  ${{ inputs }}
