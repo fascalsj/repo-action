@@ -1,5 +1,5 @@
 ---
-name: Percobaan Deploy
+name: QC Checking
 
 on:
   workflow_dispatch:
@@ -23,10 +23,13 @@ permissions:
   contents: write
 
 jobs:
-  deploy_percobaan:
+  build:
     name: Deploy Percobaan
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        name: checkout from repo
+
       - name: Percobaan dulu ini mah
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev' }}
         run: echo Tag ${{ inputs.tag }}
